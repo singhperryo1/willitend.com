@@ -37,11 +37,13 @@ export default function Navbar() {
         onClick={handleClick}
       />
       <StyledBreadcrumb component="a" href="#" label="Vaccine Anectdotes" onClick={handleClick} />
+      <StyledBreadcrumb component="a" href="#" label="Alerts:Stay Updated" onClick={handleClick} />
+      <StyledBreadcrumb component="a" href="#" label="Login" onClick={handleClick} />
       <StyledBreadcrumb
-        label="Accessories"
+        label="Create Account"
         deleteIcon={<ExpandMoreIcon />}
         onClick={handleClick}
-        onDelete={handleClick}
+        //onDelete={handleClick}
       />
     </Breadcrumbs>
   );
