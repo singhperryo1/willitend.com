@@ -2,6 +2,10 @@
 CSS file for Map.js
 */
 
+svg {
+	pointer-events: none;
+}
+
 path {
   pointer-events: all;
 }
