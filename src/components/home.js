@@ -1,4 +1,4 @@
-import Dropdown from './Dropdown.js'
+import Dropdown from './Dropdown.js';
 import Grid from '@material-ui/core/Grid';
 import Map from "./Map.js"; 
 import Navbar from "./Navbar.js";
