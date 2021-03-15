@@ -1,4 +1,7 @@
+import allStates from "./allstates.json";
+import './Map.css';
 import React from "react";
+
 import { geoCentroid } from "d3-geo";
 import {
   ComposableMap,
@@ -7,8 +10,6 @@ import {
   Marker,
   Annotation
 } from "react-simple-maps";
-
-import allStates from "./allstates.json";
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
@@ -24,15 +25,19 @@ const offsets = {
   DC: [49, 21]
 };
 
-const handleClick = (event) => {
-  console.log(event.target);
-  //alert("The state clicked is : " + event.target.id);
-}; 
+const handleMouseEnter = geo => () => {
+  /*
+  Take geo id, use it to get state data, make tooltip state and implement it 
+  Change stroke on MouseEnter
+  Change fill according to the data 
+  */
+  console.log("State is: " + geo.properties.name)
+} 
 
 const Map = () => {
   return (
     <ComposableMap projection="geoAlbersUsa">
-      <Geographies onClick = {handleClick} geography={geoUrl}>
+      <Geographies geography={geoUrl}>
         {({ geographies }) => (
           <>
             {geographies.map(geo => (
@@ -41,6 +46,7 @@ const Map = () => {
                 stroke="#FFF"
                 geography={geo}
                 fill="#DDD"
+                onMouseEnter = {handleMouseEnter(geo)}
               />
             ))}
             {geographies.map(geo => {

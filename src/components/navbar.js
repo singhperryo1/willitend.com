@@ -2,7 +2,6 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import Chip from '@material-ui/core/Chip';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import HomeIcon from '@material-ui/icons/Home';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import PersonIcon from '@material-ui/icons/Person';
@@ -39,7 +38,6 @@ export default function Navbar() {
       <StyledBreadcrumb component="a" href="#" label="Create Account" icon={<AccountCircleIcon fontSize="small" />} onClick={handleClick} />
       <StyledBreadcrumb component="a" href="#" label="Vaccine Anectdotes" icon={<ChatBubbleIcon fontSize="small" />} onClick={handleClick} />
       <StyledBreadcrumb component="a" href="#" label="Stay Updated" icon={<NotificationsIcon fontSize="small" />} onClick={handleClick} />
-        //onDelete={handleClick}
       />
     </Breadcrumbs>
   );
