@@ -1,10 +1,30 @@
-import Dropdown from './Dropdown.js'
-export default function Home(){
-    return(
-        <div>
-        <h1>Welcome to the Home Page</h1>
-        <h3>This is where we render different pages of projects</h3>
-        <Dropdown/> 
-        </div>
-    );
+import Dropdown from './Dropdown.js';
+import Map from "./Map.js"; 
+import Textfield from './Textfield.js';
+import { makeStyles } from '@material-ui/core/styles';
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
+
+function Home() {
+
+	const classes = useStyles();
+
+  return (
+  	<div className = {classes.root}>
+    <br />
+    <br />
+    <br />
+    <br />
+      <Map />
+    </div>
+  );
 }
+export default Home;
