@@ -11,8 +11,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   table: {
-    width: 400,
-  },
+    width: '100%',
+    display: 'grid', 
+    justifyContent: 'center', 
+    alignItems: 'center',
+  }
 });
 
 function createData(measurement, result) {
@@ -28,9 +31,8 @@ const rows = [
 
 export default function Textfield() {
   const classes = useStyles();
-
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component = {Paper}>
       <Table className={classes.table} aria-label="COVID-19 Vaccine Results Table">
         <TableHead>
           <h1>Vaccine Results</h1>
