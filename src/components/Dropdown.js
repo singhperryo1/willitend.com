@@ -38,7 +38,7 @@ export default function Dropdown() {
   return (
     <div>
       <Button className={classes.button} onClick={handleOpen}>
-        Open to Select
+        Select State
       </Button>
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-controlled-open-select-label">State</InputLabel>

@@ -1,11 +1,11 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
 
 export default function Subscription() {
   const [open, setOpen] = React.useState(false);
@@ -21,14 +21,13 @@ export default function Subscription() {
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Subscribe 
+        SUBSCRIBE 
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Subscribe to get the latest COVID news. Please enter your email address here. We will send updates
-            occasionally.
+          For regular updates on herd immunity, enter info below!
           </DialogContentText>
           <TextField
             autoFocus
@@ -36,6 +35,14 @@ export default function Subscription() {
             id="name"
             label="Email Address"
             type="email"
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="State"
+            type="text"
             fullWidth
           />
         </DialogContent>
