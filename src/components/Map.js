@@ -1,7 +1,6 @@
 import allStates from "./allstates.json";
 import './Map.css';
 import React from "react";
-
 import { geoCentroid } from "d3-geo";
 import {
   ComposableMap,
@@ -25,28 +24,47 @@ const offsets = {
   DC: [49, 21]
 };
 
-const handleMouseEnter = geo => () => {
-  /*
-  Take geo id, use it to get state data, make tooltip state and implement it 
-  Change stroke on MouseEnter
-  Change fill according to the data 
-  */
-  console.log("State is: " + geo.properties.name)
-} 
+function getStateData (id, name) {
 
-const Map = () => {
+  /*
+  Make call to backend to fetch data for the state, return type will be JSON 
+  */
+
+  return name; 
+}
+
+const Map = ({ setToolTipContent }) => {
   return (
-    <ComposableMap projection="geoAlbersUsa">
+    <ComposableMap data-tip ="" projection="geoAlbersUsa">
       <Geographies geography={geoUrl}>
         {({ geographies }) => (
           <>
             {geographies.map(geo => (
               <Geography
                 key={geo.rsmKey}
-                stroke="#FFF"
+                stroke="white"
                 geography={geo}
                 fill="#DDD"
-                onMouseEnter = {handleMouseEnter(geo)}
+                data-tip data-for={geo.id}
+                onMouseEnter = { () => {
+
+                  const name = geo.properties.name; 
+                  const id = geo.id; 
+                  
+                  const data = getStateData(id, name);                 
+
+                  return (
+                  setToolTipContent(`<h3>${data}</h3>
+                   <p style ="display: inline;"><h2 style = "display: inline;">${id} DAYS</h2>    to Herd Immunity</p>`));
+                }}
+                onMouseLeave = { () =>{
+                  setToolTipContent("");
+                }}
+                style={{
+                    hover: {
+                      stroke: "black"
+                    }
+                  }}
               />
             ))}
             {geographies.map(geo => {
