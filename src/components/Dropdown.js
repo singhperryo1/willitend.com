@@ -1,4 +1,3 @@
-import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -20,11 +19,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dropdown() {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
+  const [state, setState] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setState(event.target.value);
   };
 
   const handleClose = () => {
@@ -37,9 +36,6 @@ export default function Dropdown() {
 
   return (
     <div>
-      <Button className={classes.button} onClick={handleOpen}>
-        Select State
-      </Button>
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-controlled-open-select-label">State</InputLabel>
         <Select
@@ -48,7 +44,7 @@ export default function Dropdown() {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={age}
+          value={state}
           onChange={handleChange}
         >
           <MenuItem value="">

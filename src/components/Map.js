@@ -24,6 +24,8 @@ const offsets = {
   DC: [49, 21]
 };
 
+const Map = ({ setToolTipContent }) => {
+
 function getStateData (id, name) {
 
   /*
@@ -33,7 +35,6 @@ function getStateData (id, name) {
   return name; 
 }
 
-const Map = ({ setToolTipContent }) => {
   return (
     <ComposableMap data-tip ="" projection="geoAlbersUsa">
       <Geographies geography={geoUrl}>

@@ -26,19 +26,19 @@ const StyledBreadcrumb = withStyles((theme) => ({
   },
 }))(Chip); // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
 
+export default function Navbar() {
+
 function handleClick(event) {
   event.preventDefault();
   console.info('You clicked a breadcrumb.');
 }
-
-export default function Navbar() {
   return (
     <Breadcrumbs separator = "  " aria-label="breadcrumb">
       <StyledBreadcrumb component="a" href="#" label="Home" icon={<HomeIcon fontSize="small" />} onClick={handleClick} />
+      <StyledBreadcrumb component="a" href="#" label="Stay Updated" icon={<NotificationsIcon fontSize="small" />} onClick={handleClick} />
       <StyledBreadcrumb component="a" href="#" label="Login" icon={<PersonIcon fontSize="small" />} onClick={handleClick} />
       <StyledBreadcrumb component="a" href="#" label="Create Account" icon={<AccountCircleIcon fontSize="small" />} onClick={handleClick} />
       <StyledBreadcrumb component="a" href="#" label="Vaccine Anectdotes" icon={<ChatBubbleIcon fontSize="small" />} onClick={handleClick} />
-      <StyledBreadcrumb component="a" href="#" label="Stay Updated" icon={<NotificationsIcon fontSize="small" />} onClick={handleClick} />
       />
     </Breadcrumbs>
   );
