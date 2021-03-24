@@ -22,22 +22,33 @@ const styles = theme => ({
 
 class Subscription extends React.Component {
 
-  state = {
-    place: 'CA',
-  };
+  constructor (props) {
+    super (props);
+    this.state = {email : '', place: 'CA'};
 
-  handleChange = place => event => {
+    this.handleForm = this.handleForm.bind(this); 
+    this.handlePlaceChange = this.handlePlaceChange.bind(this); 
+    this.handleEmailChange = this.handleEmailChange.bind(this);  
+  }
+
+  handlePlaceChange = place => event => {
     this.setState({
-      [place]: event.target.value,
+      place: event.target.value,
     });
   };
 
+  handleEmailChange = email => event => {
+    this.setState({
+      email: event.target.value,
+    })
+  }
   handleForm (e) {
     /*
     Make textfield state and get the data
     */
     e.preventDefault();
     console.log("We getting data");
+    console.log("This is the email: " + this.state.email + " and this is the state: " + this.state.place);
   }; 
 
   render() {
@@ -53,9 +64,11 @@ class Subscription extends React.Component {
           label="Email Required"
           placeholder = "Enter email address"
           className={classes.textField}
-          type = "email"
+          type = "text"
           margin="normal"
           variant="outlined"
+          onChange = {this.handleEmailChange('email')}
+          value = {this.state.email}
         />
 
         <TextField
@@ -64,7 +77,7 @@ class Subscription extends React.Component {
           label="State Required"
           className={classes.textField}
           value={this.state.place}
-          onChange={this.handleChange('place')}
+          onChange={this.handlePlaceChange('place')}
           SelectProps={{
             MenuProps: {
               className: classes.menu,
