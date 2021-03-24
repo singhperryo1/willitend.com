@@ -43,11 +43,7 @@ class Subscription extends React.Component {
     })
   }
   handleForm (e) {
-    /*
-    Make textfield state and get the data
-    */
     e.preventDefault();
-    console.log("We getting data");
     console.log("This is the email: " + this.state.email + " and this is the state: " + this.state.place);
   }; 
 

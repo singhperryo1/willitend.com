@@ -20,7 +20,13 @@ export default function Home() {
 
     const classes = useStyles();
 
+    const [place, setPlace] = useState("");
     const [stateInfo, setStateInfo] = useState(""); 
+
+    const handlePlaceChange = (place) => {
+      setPlace(place);
+      console.log("this is the place: " + place);
+    }; 
 
   return (
     <div className={classes.root} >
@@ -31,8 +37,8 @@ export default function Home() {
     <ReactTooltip type = "light" multiline html border >{stateInfo}</ReactTooltip>
     </Grid>
      <Grid item xs = {12} md = {3} spacing = {3} > 
-      <Dropdown />
-      <Textfield />
+      <Dropdown place ={place} onPlaceChange = {handlePlaceChange} />
+      <Textfield place = {place} />
     </Grid>
      <Subscription /> 
     </Grid>
