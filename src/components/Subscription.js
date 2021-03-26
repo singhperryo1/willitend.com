@@ -42,6 +42,7 @@ class Subscription extends React.Component {
       email: event.target.value,
     })
   }
+  
   handleForm (e) {
     e.preventDefault();
     console.log("This is the email: " + this.state.email + " and this is the state: " + this.state.place);
@@ -90,7 +91,7 @@ class Subscription extends React.Component {
           ))}
         </TextField>
         <br/>
-        <Button onClick = {this.handleForm} style={{height: '55px', marginTop : '16px'}} variant="contained" color="dark">
+        <Button onClick = {this.handleForm} style={{height: '55px', marginTop : '16px'}} variant="contained" color="primary">
           Submit
         </Button>
       </form>

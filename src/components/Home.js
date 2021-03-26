@@ -25,7 +25,6 @@ export default function Home() {
 
     const handlePlaceChange = (place) => {
       setPlace(place);
-      console.log("this is the place: " + place);
     }; 
 
   return (

@@ -23,8 +23,9 @@ function createData(state, rowId, measurement, result) {
   Make backend call to fetch the data for the state and then return the result using rowId
   */
   if (state == "CA") {
-    result = "Khalistan";
+    result = 84;
   }
+  
   return {measurement, result};
 }
 
@@ -32,8 +33,6 @@ export default function Textfield (props) {
   const classes = useStyles();
 
   const state = props.place; 
-
-  console.log("Got the state in the textfield: " + state);
 
   const rows = [
   createData(state, '1', 'Days to Herd Immunity', '---'),

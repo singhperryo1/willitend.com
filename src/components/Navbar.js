@@ -34,11 +34,11 @@ function handleClick(event) {
 }
   return (
     <Breadcrumbs separator = "  " aria-label="breadcrumb">
-      <StyledBreadcrumb component="a" href="#" label="Home" icon={<HomeIcon fontSize="small" />} onClick={handleClick} />
-      <StyledBreadcrumb component="a" href="#" label="Stay Updated" icon={<NotificationsIcon fontSize="small" />} onClick={handleClick} />
-      <StyledBreadcrumb component="a" href="#" label="Login" icon={<PersonIcon fontSize="small" />} onClick={handleClick} />
-      <StyledBreadcrumb component="a" href="#" label="Create Account" icon={<AccountCircleIcon fontSize="small" />} onClick={handleClick} />
-      <StyledBreadcrumb component="a" href="#" label="Vaccine Anectdotes" icon={<ChatBubbleIcon fontSize="small" />} onClick={handleClick} />
+      <StyledBreadcrumb component="a"  label="Home" icon={<HomeIcon fontSize="small" />} />
+      <StyledBreadcrumb component="a"  label="Stay Updated" icon={<NotificationsIcon fontSize="small" />} />
+      <StyledBreadcrumb component="a"  label="Login" icon={<PersonIcon fontSize="small" />} />
+      <StyledBreadcrumb component="a"  label="Create Account" icon={<AccountCircleIcon fontSize="small" />} />
+      <StyledBreadcrumb component="a"  label="Vaccine Anectdotes" icon={<ChatBubbleIcon fontSize="small" />} />
       />
     </Breadcrumbs>
   );
