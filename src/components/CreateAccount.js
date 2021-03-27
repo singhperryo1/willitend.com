@@ -62,6 +62,11 @@ export default function CreateAccount() {
   const handleForm =  (e) => {
     e.preventDefault();
     console.log("This is username: " + username + " and this is email: " + email + " and this is state: " + place + " and this is pass: " + password);
+
+    setUsername(""); 
+    setEmail(""); 
+    setPlace(""); 
+    setPassword("");
   }
 
 

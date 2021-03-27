@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function Login() {
 
   const classes = useStyles();
 
@@ -49,6 +49,9 @@ export default function SignIn() {
   const handleForm =  (e) => {
     e.preventDefault();
     console.log("This is username: " + username + " this is pass: " + password);
+
+    setUsername(""); 
+    setPassword(""); 
   }
 
   return (
@@ -102,7 +105,7 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="./Signup" variant="body2">
+              <Link href="./CreateAccount" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

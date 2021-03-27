@@ -1,5 +1,6 @@
 import allStates from "./allstates.json";
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -46,6 +47,9 @@ class Subscription extends React.Component {
   handleForm (e) {
     e.preventDefault();
     console.log("This is the email: " + this.state.email + " and this is the state: " + this.state.place);
+    this.setState({
+      email: '', place: 'CA'
+    }); 
   }; 
 
   render() {
@@ -53,6 +57,7 @@ class Subscription extends React.Component {
 
     return (
       <div>
+      <Grid container = "true" direction = "row" justify = "center" alignItems = "center">
       <h3>Be the first to receive the latest Herd Immunity updates</h3>
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
@@ -95,6 +100,7 @@ class Subscription extends React.Component {
           Submit
         </Button>
       </form>
+      </Grid>
 </div>
     );
   }

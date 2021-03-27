@@ -29,10 +29,6 @@ const StyledBreadcrumb = withStyles((theme) => ({
 
 export default function Navbar() {
 
-function handleClick(event) {
-  event.preventDefault();
-  console.info('You clicked a breadcrumb.');
-}
   return (
     <Breadcrumbs separator = "  " aria-label="breadcrumb">
     
