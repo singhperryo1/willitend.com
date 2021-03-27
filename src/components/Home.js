@@ -1,7 +1,6 @@
 import Dropdown from './Dropdown.js'
 import Grid from '@material-ui/core/Grid';
 import Map from "./Map.js"; 
-import Navbar from "./Navbar.js";
 import ReactTooltip from "react-tooltip";
 import Subscription from "./Subscription.js";
 import Textfield from './Textfield.js';
@@ -29,8 +28,7 @@ export default function Home() {
 
   return (
     <div className={classes.root} >
-     <Grid container = "true" direction = "row" justify = "center" alignItems = "center" spacing = {3}>
-        <Navbar />    
+     <Grid container = "true" direction = "row" justify = "center" alignItems = "center" spacing = {3}>    
     <Grid item  xs = {12} md = {9}> 
     <Map setToolTipContent = {setStateInfo} />
     <ReactTooltip type = "light" multiline html border >{stateInfo}</ReactTooltip>

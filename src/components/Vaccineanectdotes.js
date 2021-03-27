@@ -1,5 +1,6 @@
 import {react, Component } from 'react';
-class Vaccineanectdotes extends Component
+
+class VaccineAnectdotes extends Component
 {
     render()
     {
@@ -10,4 +11,5 @@ class Vaccineanectdotes extends Component
         );
     }
 };
-export default Vaccineanectdotes;
+
+export default VaccineAnectdotes;
