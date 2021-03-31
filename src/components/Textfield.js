@@ -18,24 +18,39 @@ const useStyles = makeStyles({
   }
 });
 
-function createData(measurement, result) {
+function createData(state, rowId, measurement, result) {
+  /*
+  Make backend call to fetch the data for the state and then return the result using rowId
+  */
+  if (state == "CA") {
+    result = 84;
+  }
+  
   return {measurement, result};
 }
 
-const rows = [
-  createData('Days to Herd Immunity', '---'),
-  createData('Vaccinations Per Day', '---'),
-  createData('Citizens Currently Vaccinated (Fully)', '---'),
-  createData('Citizens Currently Vaccinated (Partially)', '---'),
+export default function Textfield (props) {
+  const classes = useStyles();
+
+  const state = props.place; 
+
+  const rows = [
+  createData(state, '1', 'Days to Herd Immunity', '---'),
+  createData(state, '2', 'Vaccinations Per Day', '---'),
+  createData(state, '3', 'Citizens Currently Vaccinated (Fully)', '---'),
+  createData(state, '4', 'Citizens Currently Vaccinated (Partially)', '---'),
 ];
 
-export default function Textfield() {
-  const classes = useStyles();
   return (
     <TableContainer component = {Paper}>
       <Table className={classes.table} aria-label="COVID-19 Vaccine Results Table">
         <TableHead>
-          <h1>Vaccine Results</h1>
+        {state != "" && 
+          <p><h4>Vaccine Results for {state}</h4></p>
+        }
+        {state == "" &&
+          <p><h3>Vaccine Results</h3></p>
+        }
         </TableHead>
         <TableBody>
           {rows.map((row) => (
