@@ -2,7 +2,6 @@ import Dropdown from './Dropdown.js'
 import Grid from '@material-ui/core/Grid';
 import Map from "./Map.js"; 
 import ReactTooltip from "react-tooltip";
-import Subscription from "./Subscription.js";
 import Textfield from './Textfield.js';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -36,9 +35,9 @@ export default function Home() {
      <Grid item xs = {12} md = {3} spacing = {3} > 
       <Dropdown place ={place} onPlaceChange = {handlePlaceChange} />
       <Textfield place = {place} />
+    </Grid> 
     </Grid>
-     <Subscription /> 
-    </Grid>
+
     </div>
   );
 }

@@ -74,7 +74,7 @@ class Subscription extends React.Component {
         <TextField
           required
           id="outlined-required"
-          label="Email Required"
+          label="Email"
           placeholder = "Enter email address"
           className={classes.textField}
           type = "text"
@@ -87,7 +87,7 @@ class Subscription extends React.Component {
         <TextField
           id="outlined-select-currency"
           select
-          label="State Required"
+          label="State*"
           className={classes.textField}
           value={this.state.place}
           onChange={this.handlePlaceChange('place')}
