@@ -1,26 +1,45 @@
-import Container from '@material-ui/core/Container';
 import Dropdown from './Dropdown.js'
 import Grid from '@material-ui/core/Grid';
 import Map from "./Map.js"; 
-import Navbar from "./Navbar.js";
+import ReactTooltip from "react-tooltip";
+import Subscription from "./Subscription.js";
 import Textfield from './Textfield.js';
 
+import { makeStyles } from '@material-ui/core/styles';
+import React, { useState } from "react";
 
-function Home() {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+}));
+
+export default function Home() {
+
+    const classes = useStyles();
+
+    const [place, setPlace] = useState("");
+    const [stateInfo, setStateInfo] = useState(""); 
+
+    const handlePlaceChange = (place) => {
+      setPlace(place);
+    }; 
+
   return (
-  	<Container> 
-    <Grid container = "true" direction = "row" justify = "center" alignItems = "center" spacing = {3}>
-    <br />
-    <br />
-    <br />
-    <br />
-    <Navbar />
-    <Map />
-    <Dropdown />
-    <Textfield />
+    <div className={classes.root} >
+     <Grid container = "true" direction = "row" justify = "center" alignItems = "center" spacing = {3}>    
+    <Grid item  xs = {12} md = {9}> 
+    <Map setToolTipContent = {setStateInfo} />
+    <ReactTooltip type = "light" multiline html border >{stateInfo}</ReactTooltip>
     </Grid>
-    </Container>
+     <Grid item xs = {12} md = {3} spacing = {3} > 
+      <Dropdown place ={place} onPlaceChange = {handlePlaceChange} />
+      <Textfield place = {place} />
+    </Grid>
+     <Subscription /> 
+    </Grid>
+    </div>
   );
 }
 
-export default Home;
