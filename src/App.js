@@ -7,9 +7,9 @@ import Grid from '@material-ui/core/Grid';
 import Home from "./components/Home.js";
 import Login from "./components/Login.js";
 import Navbar from "./components/Navbar.js"; 
+import PostDefault from "./components/PostDefault.js";
 import React from 'react';
 import Subscription from "./components/Subscription.js"
-import VaccineAnectdotes from "./components/VaccineAnectdotes.js";
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -55,7 +55,7 @@ function App() {
         </Route>
 
         <Route exact path="/VaccineAnectdotes">
-          <VaccineAnectdotes />
+          <PostDefault />
         </Route>
 
          {/* If user try to access a invalid page,
