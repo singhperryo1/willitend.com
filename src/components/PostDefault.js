@@ -1,5 +1,6 @@
-import Comment from './Comment';
 import React from 'react';
+import Comment from './Comment';
+
 class Post_Default extends React.Component {
 	constructor(props){
 		super(props);
