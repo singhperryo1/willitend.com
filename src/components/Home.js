@@ -2,7 +2,6 @@ import Dropdown from './Dropdown.js'
 import Grid from '@material-ui/core/Grid';
 import Map from "./Map.js"; 
 import ReactTooltip from "react-tooltip";
-import Subscription from "./Subscription.js";
 import Textfield from './Textfield.js';
 import allStates from "./allstates.json";
 import { makeStyles } from '@material-ui/core/styles';
@@ -121,7 +120,7 @@ export default function Home() {
     const [place, setPlace] = useState("");
     const [stateInfo, setStateInfo] = useState(""); 
     const [saveStateInfo,setOldStateInfo] = useState("");
-    const handlePlaceChangeDropDown = (newplace) => {
+    const handlePlaceChange = (newplace) => {
       setPlace(newplace);
       for(var i =0; i<allStates.length;i++){
         if(allStates[i].id === newplace){
@@ -148,11 +147,11 @@ export default function Home() {
     <ReactTooltip type = "light" multiline html border >{stateInfo}</ReactTooltip>
     </Grid>
      <Grid item xs = {12} md = {3} spacing = {3} > 
-      <Dropdown place ={place} onPlaceChange = {handlePlaceChangeDropDown} />
-      <Textfield place = {convertRegion(place,'to_name')} dayToHerdIm={saveStateInfo}  dayPerVac={dayPerVac} oneShotNum={oneShotNum} twoShotNum={twoShotNum}/>
+      <Dropdown place ={place} onPlaceChange = {handlePlaceChange} />
+      <Textfield place = {place} />
+    </Grid> 
     </Grid>
-     <Subscription /> 
-    </Grid>
+
     </div>
   );
 }
