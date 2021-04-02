@@ -1,5 +1,6 @@
+import { Fade } from '@material-ui/core';
 import { Component } from 'react';
-
+import FAQ from './FAQ.js';
 class VaccineAnectdotes extends Component
 {
     render()
@@ -7,6 +8,7 @@ class VaccineAnectdotes extends Component
         return(
             <h1>
                 TODO Vaccine anectdotes
+                <FAQ/>
             </h1>
         );
     }
