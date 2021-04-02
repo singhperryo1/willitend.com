@@ -2,12 +2,13 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import Box from '@material-ui/core/Box';
 import Copyright from "./components/Copyright.js";
 import CreateAccount from "./components/CreateAccount.js";
+import FAQ from "./components/FAQ.js";
 import Grid from '@material-ui/core/Grid';
 import Home from "./components/Home.js";
 import Login from "./components/Login.js";
 import Navbar from "./components/Navbar.js"; 
 import React from 'react';
-import Subscription from "./components/Subscription.js";
+import Subscription from "./components/Subscription.js"
 import VaccineAnectdotes from "./components/VaccineAnectdotes.js";
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -49,8 +50,8 @@ function App() {
           <CreateAccount />
         </Route>
 
-        <Route exact path="/StayUpdated">
-          <Subscription />
+        <Route exact path="/FAQ">
+          <FAQ />
         </Route>
 
         <Route exact path="/VaccineAnectdotes">
@@ -63,6 +64,8 @@ function App() {
         <Redirect to="/"/>
 
     	</Switch>
+
+      <Subscription />
 
     <Box mt={5}>
     	<Copyright />
