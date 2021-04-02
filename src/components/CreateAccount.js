@@ -4,6 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import FormAlert from "./FormAlert.js";
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -41,7 +42,8 @@ export default function CreateAccount() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState(""); 
   const [place, setPlace] = useState("");
-  const [password, setPassword] = useState("");   
+  const [password, setPassword] = useState("");  
+  const [status, setStatusBase] = useState(""); 
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -61,12 +63,20 @@ export default function CreateAccount() {
 
   const handleForm =  (e) => {
     e.preventDefault();
+
+    if (!username || !email || !place || !password) {
+      alert("One or more field is empty"); 
+    } else {
+
     console.log("This is username: " + username + " and this is email: " + email + " and this is state: " + place + " and this is pass: " + password);
 
     setUsername(""); 
     setEmail(""); 
     setPlace(""); 
     setPassword("");
+    setStatusBase({ msg: "Account Creation Successful", key: Math.random() });
+  }
+
   }
 
 
@@ -90,7 +100,7 @@ export default function CreateAccount() {
                 required
                 fullWidth
                 id="username"
-                label="Username Required"
+                label="Username"
                 name="username"
                 value = {username}
                 onChange = {handleUsernameChange}
@@ -103,7 +113,7 @@ export default function CreateAccount() {
                 required
                 fullWidth
                 id="email"
-                label="Email Required"
+                label="Email"
                 name="email"
                 value = {email}
                 onChange = {handleEmailChange}
@@ -114,7 +124,7 @@ export default function CreateAccount() {
             fullWidth
           id="outlined-select-currency"
           select
-          label="State Required"
+          label="State*"
           value={place}
           onChange={handlePlaceChange}
           SelectProps={{
@@ -138,7 +148,7 @@ export default function CreateAccount() {
                 required
                 fullWidth
                 name="password"
-                label="Password Required"
+                label="Password"
                 type="password"
                 id="password"
                 value = {password}
@@ -164,6 +174,13 @@ export default function CreateAccount() {
             </Grid>
           </Grid>
         </form>
+
+         {status ? <FormAlert key={status.key} message={status.msg} /> : null}
+
+        <br/>
+        <br/>
+
+
       </div>
     </Container>
   );

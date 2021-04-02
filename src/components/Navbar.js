@@ -4,7 +4,7 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import Chip from '@material-ui/core/Chip';
 import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 import PersonIcon from '@material-ui/icons/Person';
 import React from 'react';
 
@@ -36,10 +36,6 @@ export default function Navbar() {
       <StyledBreadcrumb component="a"  label="Home" icon={<HomeIcon fontSize="small" />} />
     </Link>
     
-    <Link to = "/StayUpdated" className = "link">
-      <StyledBreadcrumb component="a"  label="Stay Updated" icon={<NotificationsIcon fontSize="small" />} />
-    </Link>
-
     <Link to = "/Login" className = "link">
       <StyledBreadcrumb component="a"  label="Login" icon={<PersonIcon fontSize="small" />} />
     </Link>
@@ -51,6 +47,11 @@ export default function Navbar() {
     <Link to = "/VaccineAnectdotes" className = "link"> 
       <StyledBreadcrumb component="a"  label="Vaccine Anectdotes" icon={<ChatBubbleIcon fontSize="small" />} />
     </Link> 
+
+    <Link to = "/FAQ" className = "link">
+      <StyledBreadcrumb component="a"  label="FAQ" icon={<LiveHelpIcon fontSize="small" />} />
+    </Link>
+
 
     </Breadcrumbs>
   );

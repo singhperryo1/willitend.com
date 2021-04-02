@@ -1,5 +1,6 @@
 import allStates from "./allstates.json";
 import Button from '@material-ui/core/Button';
+import FormAlert from "./FormAlert.js";
 import Grid from '@material-ui/core/Grid';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -25,7 +26,7 @@ class Subscription extends React.Component {
 
   constructor (props) {
     super (props);
-    this.state = {email : '', place: 'CA'};
+    this.state = {email : '', place: 'CA', status : '', key: ''};
 
     this.handleForm = this.handleForm.bind(this); 
     this.handlePlaceChange = this.handlePlaceChange.bind(this); 
@@ -40,16 +41,26 @@ class Subscription extends React.Component {
 
   handleEmailChange = email => event => {
     this.setState({
-      email: event.target.value,
+      email: event.target.value
     })
   }
   
   handleForm (e) {
     e.preventDefault();
+
+    if (!this.state.email || !this.state.place) {
+
+      alert("One or more field is empty");
+    } else {
+
     console.log("This is the email: " + this.state.email + " and this is the state: " + this.state.place);
+
     this.setState({
-      email: '', place: 'CA'
-    }); 
+      email: '', place: 'CA', status: "We've got your info, thanks!", key: Math.random()
+    })
+
+  }
+
   }; 
 
   render() {
@@ -63,7 +74,7 @@ class Subscription extends React.Component {
         <TextField
           required
           id="outlined-required"
-          label="Email Required"
+          label="Email"
           placeholder = "Enter email address"
           className={classes.textField}
           type = "text"
@@ -76,7 +87,7 @@ class Subscription extends React.Component {
         <TextField
           id="outlined-select-currency"
           select
-          label="State Required"
+          label="State*"
           className={classes.textField}
           value={this.state.place}
           onChange={this.handlePlaceChange('place')}
@@ -101,6 +112,9 @@ class Subscription extends React.Component {
         </Button>
       </form>
       </Grid>
+
+      {this.state.status ? <FormAlert key = {this.state.key} message = {this.state.status} /> : null}
+
 </div>
     );
   }

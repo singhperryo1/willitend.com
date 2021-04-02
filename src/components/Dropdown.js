@@ -18,12 +18,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dropdown (props) {
+const Dropdown = ( props ) => {
   const classes = useStyles();
-  var state = props.place;
+  const [state, setState] = React.useState(props.place);
   const [open, setOpen] = React.useState(false);
-
   const handleChange = (event) => {
+    setState(event.target.value);
     props.onPlaceChange(event.target.value);
   };
 
@@ -45,7 +45,7 @@ export default function Dropdown (props) {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={state}
+          value={props.place}
           onChange={handleChange}
         >
           <MenuItem value="">
@@ -61,3 +61,4 @@ export default function Dropdown (props) {
     </div>
   );
 }
+export default Dropdown;

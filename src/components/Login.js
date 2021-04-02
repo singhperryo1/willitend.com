@@ -2,6 +2,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import FormAlert from "./FormAlert.js";
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import React, { useState } from 'react';
@@ -37,6 +38,7 @@ export default function Login() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState(""); 
+  const [status, setStatusBase] = useState("");
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -48,10 +50,18 @@ export default function Login() {
 
   const handleForm =  (e) => {
     e.preventDefault();
+
+    if (!username || !password) {
+      alert("One or more field is empty"); 
+    } else {
     console.log("This is username: " + username + " this is pass: " + password);
 
     setUsername(""); 
     setPassword(""); 
+
+    setStatusBase({ msg: "You are logged in", key: Math.random() });
+  }
+
   }
 
   return (
@@ -111,7 +121,23 @@ export default function Login() {
             </Grid>
           </Grid>
         </form>
+
+        {status ? <FormAlert key={status.key} message={status.msg} /> : null}
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
       </div>
+
     </Container>
+
   );
 }
