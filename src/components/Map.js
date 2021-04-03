@@ -24,15 +24,29 @@ const offsets = {
   DC: [49, 21]
 };
 
-const Map = ({ setToolTipContent }) => {
+const Map = ({ setToolTipContent, statesData }) => { 
 
 function getStateData (id, name) {
 
   /*
-  Make call to backend to fetch data for the state, return type will be JSON 
+  We'd get the data from the props statesData and return using id and name
   */
 
   return name; 
+}
+
+function getStateColor (id, name) {
+
+  /* decide the state color using id and name and the avail datas */ 
+  if (name === 'California') {
+    return "#CBC3E3";
+  } else if (name === "Texas") {
+    return "#CBC3E3"
+  }
+  else {
+    return "#ECDFDC";
+  }
+
 }
 
   return (
@@ -41,11 +55,13 @@ function getStateData (id, name) {
         {({ geographies }) => (
           <>
             {geographies.map(geo => (
-              <Geography
+             
+             <Geography
                 key={geo.rsmKey}
                 stroke="white"
                 geography={geo}
-                fill="#DDD"
+
+                fill = {getStateColor (geo.id, geo.properties.name)}
                 data-tip data-for={geo.id}
                 onMouseEnter = { () => {
 

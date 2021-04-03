@@ -8,7 +8,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
 import { makeStyles } from '@material-ui/core/styles';
-
 const useStyles = makeStyles({
   table: {
     width: '100%',
@@ -18,21 +17,11 @@ const useStyles = makeStyles({
   }
 });
 
-function createData(state, rowId, measurement, result) {
-  /*
-  Make backend call to fetch the data for the state and then return the result using rowId
-  */
-  if (state == "CA") {
-    result = 84;
-  }
-  
-  return {measurement, result};
-}
-
 export default function Textfield (props) {
   const classes = useStyles();
 
   const state = props.place; 
+  const statesData = props.statesData;
 
   const rows = [
   createData(state, '1', 'Days to Herd Immunity', '---'),
@@ -40,6 +29,32 @@ export default function Textfield (props) {
   createData(state, '3', 'Citizens Currently Vaccinated (Fully)', '---'),
   createData(state, '4', 'Citizens Currently Vaccinated (Partially)', '---'),
 ];
+
+function createData(state, rowId, measurement, result) {
+
+  /* simple edge case for demo w/ hard coded */ 
+  if (state === 'CA') {
+    result = 84; 
+    return {measurement, result};
+  } else if (state === "") {
+
+    result = "NaN"; 
+    return {measurement, result};
+  } else
+  /* iterate over the statesData and find the data for a particular state and populate using rowId */ 
+  /* for now simply add the hardcoded data using id */ 
+    if (rowId === '1') {
+    result = statesData.herdImmunityDays; 
+  } else if (rowId === '2') {
+    result = statesData.vaccPerDay; 
+  } else if (rowId === '3') {
+    result = statesData.fullVac; 
+  } else {
+    result = statesData.partialVac; 
+  }
+
+  return {measurement, result}; 
+}
 
   return (
     <TableContainer component = {Paper}>
