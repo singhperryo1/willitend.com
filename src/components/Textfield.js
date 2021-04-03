@@ -60,10 +60,10 @@ function createData(state, rowId, measurement, result) {
     <TableContainer component = {Paper}>
       <Table className={classes.table} aria-label="COVID-19 Vaccine Results Table">
         <TableHead>
-        {state != "" && 
+        {state !== "" && 
           <p><h4>Vaccine Results for {state}</h4></p>
         }
-        {state == "" &&
+        {state === "" &&
           <p><h3>Vaccine Results</h3></p>
         }
         </TableHead>
