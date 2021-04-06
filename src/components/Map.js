@@ -61,7 +61,7 @@ function getStateColor (id, name) {
                 stroke="white"
                 geography={geo}
 
-                fill = {getStateColor (geo.id, geo.properties.name)}
+                fill = {getStateColor(geo.id, geo.properties.name)}
                 data-tip data-for={geo.id}
                 onMouseEnter = { () => {
 

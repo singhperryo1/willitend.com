@@ -59,7 +59,7 @@ export default function Login() {
     console.log("This is username: " + username + " this is pass: " + password);
 
      /*
-    Make a get call to db, and validate password and then redirect to create post page
+    Make a get call to db, and validate password and then redirect to validate user
     */
 
     setUsername(""); 

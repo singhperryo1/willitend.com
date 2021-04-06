@@ -1,7 +1,7 @@
 import Comment from './Comment';
 import React from 'react';
 
-class Post_Default extends React.Component {
+class PostDefault extends React.Component {
 	constructor(props){
 		super(props);
 		this.title = {data: "Sample Title"}
@@ -31,4 +31,4 @@ class Post_Default extends React.Component {
   }
 }
 
-export default Post_Default;
+export default PostDefault;
