@@ -2,14 +2,15 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import Box from '@material-ui/core/Box';
 import Copyright from "./components/Copyright.js";
 import CreateAccount from "./components/CreateAccount.js";
+import CreatePost from "./components/CreatePost.js";
 import FAQ from "./components/FAQ.js";
 import Grid from '@material-ui/core/Grid';
 import Home from "./components/Home.js";
 import Login from "./components/Login.js";
 import Navbar from "./components/Navbar.js"; 
+import PostDefault from "./components/PostDefault.js";
 import React from 'react';
 import Subscription from "./components/Subscription.js"
-import VaccineAnectdotes from "./components/VaccineAnectdotes.js";
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -55,12 +56,17 @@ function App() {
         </Route>
 
         <Route exact path="/VaccineAnectdotes">
-          <VaccineAnectdotes />
+          <PostDefault />
+        </Route>
+
+        <Route exact path="/CreatePost">
+          <CreatePost />
         </Route>
 
          {/* If user try to access a invalid page,
                     redirect user to Homepage.
                 */}
+                
         <Redirect to="/"/>
 
     	</Switch>
