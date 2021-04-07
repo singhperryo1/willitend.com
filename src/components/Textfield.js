@@ -21,7 +21,7 @@ export default function Textfield (props) {
   const classes = useStyles();
 
   const state = props.place; 
-  const info = props.statesData;
+  const statesData = props.statesData;
 
   const rows = [
   createData(state, '1', 'Days to Herd Immunity', '---'),
@@ -34,7 +34,6 @@ function createData(state, rowId, measurement, result) {
 
   /* simple edge case for demo w/ hard coded */ 
   if (state === 'CA') {
-    //console.log(typeof(state))
     result = 84; 
     return {measurement, result};
   } else if (state === "") {
@@ -45,18 +44,17 @@ function createData(state, rowId, measurement, result) {
   /* iterate over the statesData and find the data for a particular state and populate using rowId */ 
   /* for now simply add the hardcoded data using id */ 
       if (rowId === '1') {
-      //console.log(info.herdImmunityDays)
-      result = info.herdImmunityDays; 
-    } else if (rowId === '2') {
-      result = info.vaccPerDay; 
-    } else if (rowId === '3') {
-      result = info.fullVac; 
-    } else {
-      result = info.partialVac; 
-    }
+        result = statesData.herdImmunityDays; 
+      } else if (rowId === '2') {
+        result = statesData.vaccPerDay; 
+      } else if (rowId === '3') {
+        result = statesData.fullVac; 
+      } else {
+        result = statesData.partialVac; 
+      }
 
-  return {measurement, result}; 
-  }
+      return {measurement, result}; 
+    }
 }
 
   return (
@@ -83,4 +81,4 @@ function createData(state, rowId, measurement, result) {
       </Table>
     </TableContainer>
   );
-} 
+}
