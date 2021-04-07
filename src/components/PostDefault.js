@@ -11,7 +11,11 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-    margin: "10px"
+    margin: "10px",
+    '&:hover':{
+      cursor: "pointer", 
+      transform: "scale(1.1)"
+    }
   },
   avatar: {
     backgroundColor: "blue",
