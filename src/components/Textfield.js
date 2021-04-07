@@ -40,7 +40,7 @@ function createData(state, rowId, measurement, result) {
 
     result = "NaN"; 
     return {measurement, result};
-  } else
+  } else {
   /* iterate over the statesData and find the data for a particular state and populate using rowId */ 
   /* for now simply add the hardcoded data using id */ 
     if (rowId === '1') {
@@ -54,6 +54,7 @@ function createData(state, rowId, measurement, result) {
   }
 
   return {measurement, result}; 
+  }
 }
 
   return (

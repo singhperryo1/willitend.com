@@ -51,7 +51,7 @@ export default function CreatePost () {
     e.preventDefault();
 
      /*
-    Make a get call to db, and save post
+    Make a get call to db, and save post, with date, username
     */
 
     if (!title || !site || !exp) {
