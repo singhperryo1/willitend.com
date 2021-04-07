@@ -52,6 +52,7 @@ export default function CreatePost () {
 
      /*
     Make a get call to db, and save post, with date, username
+    make the votes as zero
     */
 
     if (!title || !site || !exp) {
@@ -76,6 +77,7 @@ export default function CreatePost () {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
+      <p>You are logged in as </p>
       <h3>Singh from California</h3>
             <Button
             type="submit"

@@ -43,15 +43,15 @@ function createData(state, rowId, measurement, result) {
   } else {
   /* iterate over the statesData and find the data for a particular state and populate using rowId */ 
   /* for now simply add the hardcoded data using id */ 
-    if (rowId === '1') {
-    result = statesData.herdImmunityDays; 
-  } else if (rowId === '2') {
-    result = statesData.vaccPerDay; 
-  } else if (rowId === '3') {
-    result = statesData.fullVac; 
-  } else {
-    result = statesData.partialVac; 
-  }
+      if (rowId === '1') {
+        result = statesData.herdImmunityDays; 
+      } else if (rowId === '2') {
+        result = statesData.vaccPerDay; 
+      } else if (rowId === '3') {
+        result = statesData.fullVac; 
+      } else {
+        result = statesData.partialVac; 
+      }
 
   return {measurement, result}; 
   }
@@ -81,4 +81,4 @@ function createData(state, rowId, measurement, result) {
       </Table>
     </TableContainer>
   );
-} 
+}

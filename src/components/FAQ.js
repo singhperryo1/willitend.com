@@ -1,5 +1,4 @@
 import Faq from "react-faq-component";
-
 import { makeStyles } from '@material-ui/core/styles';
 
 /* using hardcoded data for now, we will later get the data from db */
