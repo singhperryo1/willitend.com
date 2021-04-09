@@ -60,7 +60,7 @@ function VaccineAnectdotes () {
 
         return (
         	 <div className={classes.root}>
-        	    <Grid container = "true" direction = "row" justify = "center" alignItems = "center" >
+        	    <Grid container={true} direction = "row" justify = "center" alignItems = "center" >
 
                 {renderCards()}
 

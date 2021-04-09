@@ -45,7 +45,7 @@ export default function Home() {
 
   return (
     <div className={classes.root} >
-     <Grid container = "true" direction = "row" justify = "center" alignItems = "center" spacing = {3}>    
+     <Grid container = {true} direction = "row" justify = "center" alignItems = "center" spacing = {3}>    
     <Grid item  xs = {12} md = {9}> 
     <Map setToolTipContent = {setStateInfo} statesData = {data} />
     <ReactTooltip type = "light" multiline html border >{stateInfo}</ReactTooltip>

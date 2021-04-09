@@ -30,7 +30,7 @@ function App() {
 
     <div className={classes.root}>
 
-    <Grid container = "true" direction = "row" justify = "center" alignItems = "center" spacing = {3}>
+    <Grid container={true} direction = "row" justify = "center" alignItems = "center" spacing = {3}>
 
     	<Navbar />
 

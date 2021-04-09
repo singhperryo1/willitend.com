@@ -33,23 +33,23 @@ export default function Navbar() {
     <Breadcrumbs separator = "  " aria-label="breadcrumb">
     
     <Link to = "/" className = "link">
-      <StyledBreadcrumb component="a"  label="Home" icon={<HomeIcon fontSize="small" />} />
+      <StyledBreadcrumb label="Home" icon={<HomeIcon fontSize="small" />} />
     </Link>
     
     <Link to = "/Login" className = "link">
-      <StyledBreadcrumb component="a"  label="Login" icon={<PersonIcon fontSize="small" />} />
+      <StyledBreadcrumb label="Login" icon={<PersonIcon fontSize="small" />} />
     </Link>
 
     <Link to = "/Createaccount" className = "link">
-      <StyledBreadcrumb component="a"  label="Create Account" icon={<AccountCircleIcon fontSize="small" />} />
+      <StyledBreadcrumb label="Create Account" icon={<AccountCircleIcon fontSize="small" />} />
     </Link> 
 
     <Link to = "/VaccineAnectdotes" className = "link"> 
-      <StyledBreadcrumb component="a"  label="Vaccine Anectdotes" icon={<ChatBubbleIcon fontSize="small" />} />
+      <StyledBreadcrumb label="Vaccine Anectdotes" icon={<ChatBubbleIcon fontSize="small" />} />
     </Link> 
 
     <Link to = "/FAQ" className = "link">
-      <StyledBreadcrumb component="a"  label="FAQ" icon={<LiveHelpIcon fontSize="small" />} />
+      <StyledBreadcrumb label="FAQ" icon={<LiveHelpIcon fontSize="small" />} />
     </Link>
 
 

@@ -14,8 +14,8 @@ const styles = theme => ({
     flexWrap: 'wrap',
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
   },
   menu: {
     width: 200,
@@ -68,7 +68,7 @@ class Subscription extends React.Component {
 
     return (
       <div>
-      <Grid container = "true" direction = "row" justify = "center" alignItems = "center">
+      <Grid container={true} direction = "row" justify = "center" alignItems = "center">
       <h3>Be the first to receive the latest Herd Immunity updates</h3>
       <form className={classes.container} noValidate autoComplete="off">
         <TextField

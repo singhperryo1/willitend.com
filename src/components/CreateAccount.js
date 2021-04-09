@@ -93,7 +93,7 @@ export default function CreateAccount() {
           Create Account
         </Typography>
         <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
+          <Grid container={true} spacing={2}>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -166,7 +166,7 @@ export default function CreateAccount() {
           >
             Create Account 
           </Button>
-          <Grid container justify="flex-end">
+          <Grid container={true} justify="flex-end">
             <Grid item>
               <Link href="./Login" variant="body2">
                 Already have an account? Sign in
