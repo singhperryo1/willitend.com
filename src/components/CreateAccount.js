@@ -45,6 +45,18 @@ export default function CreateAccount() {
   const [password, setPassword] = useState("");  
   const [status, setStatusBase] = useState(""); 
 
+  const validateEmail = (email) => {
+
+    var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if(email.match(mailformat)) {
+        return true;
+      } else {
+        alert("You have entered an invalid email address!");
+              return false;
+    }
+  }
+
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   }; 
@@ -68,6 +80,8 @@ export default function CreateAccount() {
       alert("One or more field is empty"); 
     } else {
 
+      if (validateEmail(email)) {
+
     console.log("This is username: " + username + " and this is email: " + email + " and this is state: " + place + " and this is pass: " + password);
 
     setUsername(""); 
@@ -75,6 +89,7 @@ export default function CreateAccount() {
     setPlace(""); 
     setPassword("");
     setStatusBase({ msg: "Account Creation Successful", key: Math.random() });
+    }
   }
 
   }

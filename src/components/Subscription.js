@@ -44,6 +44,18 @@ class Subscription extends React.Component {
       email: event.target.value
     })
   }
+
+  validateEmail(email) {
+
+    var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if(email.match(mailformat)) {
+        return true;
+      } else {
+        alert("You have entered an invalid email address!");
+              return false;
+    }
+  }
   
   handleForm (e) {
     e.preventDefault();
@@ -53,6 +65,8 @@ class Subscription extends React.Component {
       alert("One or more field is empty");
     } else {
 
+      if (this.validateEmail(this.state.email)) {
+
     console.log("This is the email: " + this.state.email + " and this is the state: " + this.state.place);
 
     this.setState({
@@ -60,6 +74,7 @@ class Subscription extends React.Component {
     })
 
   }
+}
 
   }; 
 
