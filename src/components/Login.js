@@ -124,7 +124,7 @@ export default function Login() {
             Log In
           </Button>
           <Grid container={true}>
-            <Grid items>
+            <Grid items xs>
               <Link href="" variant="body2">
                 Forgot password?
               </Link>

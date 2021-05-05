@@ -34,7 +34,7 @@ function createData(state, rowId, measurement, result) {
 
   /* simple edge case for demo w/ hard coded */ 
   if (state === 'CA') {
-    result = 84; 
+    result = 14; 
     return {measurement, result};
   } else if (state === "") {
 

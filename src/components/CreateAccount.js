@@ -3,7 +3,9 @@ import allStates from "./allstates.json";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
+import CryptoJS from 'crypto-js';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Encryptjs from 'encryptjs'; 
 import FormAlert from "./FormAlert.js";
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
@@ -11,6 +13,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import CryptoService from "../services/Crypto.service.js";
+import WillitendService from "../services/Willitend.service.js";
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -80,9 +84,25 @@ export default function CreateAccount() {
       alert("One or more field is empty"); 
     } else {
 
-      if (validateEmail(email)) {
+      /* encryption */
 
-    console.log("This is username: " + username + " and this is email: " + email + " and this is state: " + place + " and this is pass: " + password);
+      if (validateEmail(email)) {
+        var user =  {
+          email: email, 
+          state: place, 
+          password: password, 
+          username: username, 
+        };
+
+    CryptoService.getUserPublicKey(username)
+                  .then((resUser) => {
+                    
+                  }) 
+
+    WillitendService.createUser(user)
+      .catch(e => {
+        console.log(e);
+      });
 
     setUsername(""); 
     setEmail(""); 
@@ -137,7 +157,7 @@ export default function CreateAccount() {
             <Grid item xs={12}>
             <TextField
             fullWidth
-          id="outlined-select-currency"
+          id="state"
           select
           label="State*"
           value={place}
