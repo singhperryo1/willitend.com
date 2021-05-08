@@ -10,6 +10,8 @@ import Navbar from "./components/Navbar.js";
 import PostDefault from "./components/PostDefault.js";
 import React from 'react';
 import Subscription from "./components/Subscription.js"
+//import React, { Component } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -76,3 +78,16 @@ function App() {
 }
 
 export default App;
+
+
+// Differemt format ===============================
+// import React, { Component } from "react";
+// import "bootstrap/dist/css/bootstrap.min.css";
+
+// class App extends Component {
+//   render() {
+//     // ...
+//   }
+// }
+
+// export default App;

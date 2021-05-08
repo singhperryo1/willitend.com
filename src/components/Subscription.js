@@ -7,6 +7,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import WillitendService from "../services/Willitend.service.js";
+
 
 const styles = theme => ({
   container: {
@@ -53,7 +55,17 @@ class Subscription extends React.Component {
       alert("One or more field is empty");
     } else {
 
-    console.log("This is the email: " + this.state.email + " and this is the state: " + this.state.place);
+      var newsletter = {
+        email : this.state.email, 
+        state : this.state.place
+      }; 
+  
+      WillitendService.createNewsletter(newsletter)
+        .catch(e => {
+          console.log(e);
+        });
+
+    //console.log("This is the email: " + this.state.email + " and this is the state: " + this.state.place);
 
     this.setState({
       email: '', place: 'CA', status: "We've got your info, thanks!", key: Math.random()
