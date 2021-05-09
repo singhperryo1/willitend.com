@@ -1,10 +1,9 @@
-import allStates from "./allstates.json";
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import React from 'react';
+import React, { useState ,useEffect} from 'react';
 import Select from '@material-ui/core/Select';
-
+import WillitendService from '../services/Willitend.service.js';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -18,11 +17,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+var is_load_failed = false;
+var is_load = false;
 export default function Dropdown (props) {
   const classes = useStyles();
   var state = props.place;
   const [open, setOpen] = React.useState(false);
-
+  const [stateInfo, setStatInfo] = useState([]);
+  useEffect(() => {
+    WillitendService.getAllStateInfo()
+    .then(return_data =>{
+    setStatInfo(return_data.data)
+    })
+    .catch(err=>{
+      alert(err);
+      is_load_failed = true;
+      console.log("Unable to Loaded");
+      }
+    );
+    console.log("Map ==> state info has been loaded");
+    is_load = true;
+  }, []);
   const handleChange = (event) => {
     props.onPlaceChange(event.target.value);
   };
@@ -51,9 +66,9 @@ export default function Dropdown (props) {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          {allStates.map(option => (
-            <MenuItem key={option.val} value={option.id}>
-              {option.id}
+          {stateInfo && stateInfo.map(element => (
+            <MenuItem key={element.name} value={element.name}>
+              {element.name}
             </MenuItem>
           ))}
         </Select>

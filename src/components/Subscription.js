@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import WillitendService from "../services/Willitend.service.js";
 
 const styles = theme => ({
   container: {
@@ -14,8 +15,8 @@ const styles = theme => ({
     flexWrap: 'wrap',
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
   },
   menu: {
     width: 200,
@@ -44,6 +45,18 @@ class Subscription extends React.Component {
       email: event.target.value
     })
   }
+
+  validateEmail(email) {
+
+    var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if(email.match(mailformat)) {
+        return true;
+      } else {
+        alert("You have entered an invalid email address!");
+              return false;
+    }
+  }
   
   handleForm (e) {
     e.preventDefault();
@@ -53,13 +66,24 @@ class Subscription extends React.Component {
       alert("One or more field is empty");
     } else {
 
-    console.log("This is the email: " + this.state.email + " and this is the state: " + this.state.place);
+      if (this.validateEmail(this.state.email)) {
+        
+    var newsletter = {
+      email : this.state.email, 
+      state : this.state.place
+    }; 
+
+    WillitendService.createNewsletter(newsletter)
+      .catch(e => {
+        console.log(e);
+      });
 
     this.setState({
       email: '', place: 'CA', status: "We've got your info, thanks!", key: Math.random()
     })
 
   }
+}
 
   }; 
 
@@ -68,7 +92,7 @@ class Subscription extends React.Component {
 
     return (
       <div>
-      <Grid container = "true" direction = "row" justify = "center" alignItems = "center">
+      <Grid container={true} direction = "row" justify = "center" alignItems = "center">
       <h3>Be the first to receive the latest Herd Immunity updates</h3>
       <form className={classes.container} noValidate autoComplete="off">
         <TextField

@@ -3,7 +3,9 @@ import allStates from "./allstates.json";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
+import CryptoJS from 'crypto-js';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Encryptjs from 'encryptjs'; 
 import FormAlert from "./FormAlert.js";
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
@@ -11,6 +13,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import CryptoService from "../services/Crypto.service.js";
+import WillitendService from "../services/Willitend.service.js";
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -45,6 +49,18 @@ export default function CreateAccount() {
   const [password, setPassword] = useState("");  
   const [status, setStatusBase] = useState(""); 
 
+  const validateEmail = (email) => {
+
+    var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if(email.match(mailformat)) {
+        return true;
+      } else {
+        alert("You have entered an invalid email address!");
+              return false;
+    }
+  }
+
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   }; 
@@ -68,13 +84,32 @@ export default function CreateAccount() {
       alert("One or more field is empty"); 
     } else {
 
-    console.log("This is username: " + username + " and this is email: " + email + " and this is state: " + place + " and this is pass: " + password);
+      /* encryption */
+
+      if (validateEmail(email)) {
+        var user =  {
+          email: email, 
+          state: place, 
+          password: password, 
+          username: username, 
+        };
+
+    CryptoService.getUserPublicKey(username)
+                  .then((resUser) => {
+                    
+                  }) 
+
+    WillitendService.createUser(user)
+      .catch(e => {
+        console.log(e);
+      });
 
     setUsername(""); 
     setEmail(""); 
     setPlace(""); 
     setPassword("");
     setStatusBase({ msg: "Account Creation Successful", key: Math.random() });
+    }
   }
 
   }
@@ -93,7 +128,7 @@ export default function CreateAccount() {
           Create Account
         </Typography>
         <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
+          <Grid container={true} spacing={2}>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -122,7 +157,7 @@ export default function CreateAccount() {
             <Grid item xs={12}>
             <TextField
             fullWidth
-          id="outlined-select-currency"
+          id="state"
           select
           label="State*"
           value={place}
@@ -166,7 +201,7 @@ export default function CreateAccount() {
           >
             Create Account 
           </Button>
-          <Grid container justify="flex-end">
+          <Grid container={true} justify="flex-end">
             <Grid item>
               <Link href="./Login" variant="body2">
                 Already have an account? Sign in
