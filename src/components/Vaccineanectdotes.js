@@ -1,7 +1,8 @@
 import Grid from '@material-ui/core/Grid';
 import PostDefault from "./PostDefault.js";
-
 import { makeStyles } from '@material-ui/core/styles';
+import WillitendService from "../services/Willitend.service.js";
+import React, { useState ,useEffect} from 'react';
 
  const useStyles = makeStyles((theme) => ({
   root: {
@@ -10,11 +11,31 @@ import { makeStyles } from '@material-ui/core/styles';
   },
 }));
 
-function VaccineAnectdotes () {
+
+
+
+const VaccineAnectdotes = () => {
 
 /* make backend call from db and get the data */
 /* Hard coded for now */ 
+    const [allExp, setAllExp] = useState([]);
 
+    useEffect(() => {
+        getAllExp();
+    }, []);
+
+    const getAllExp = () => {
+        WillitendService.getAllExp()
+        .then(response => {
+            setAllExp(response.data);
+            console.log(response.data);
+        })
+        .catch(e => {
+            console.log(e);
+        });
+    };
+
+        /* hard coded example
         var info = {
         username : "jared", 
         state: "NY", 
@@ -33,24 +54,36 @@ function VaccineAnectdotes () {
         site : "Colorado Health Center", 
         exp : "I felt dizzy and was almost asleep for two days in a row! #FauciOuchie"
         }
+        */
 
-
-
-    	const classes = useStyles();
+        
+        const classes = useStyles();
+        // number of experiences is initialized to 0
+        let numExperiences = 0
+        console.log("Experiences:" + allExp)
+        // if number of experiences is not 0 check the allExp instance
+        if (Object.values(allExp).length !== 0){
+            // reassign number of experiences
+            numExperiences = Object.values(Object.values(allExp)[2]).length
+        }
+        console.log("number of experiences: " + numExperiences)
 
         const renderCards = () => {
             let cards = []; 
 
-            for (let i = 0; i < 13; i++) {
+            // iterates through all experiences and adds them to cards
+            for (let i = 0; i < numExperiences; i++) {
 
-                if (i % 2 === 0) {
-
-                cards.push(<PostDefault data = {info1} />);
-
-                } else {
+                var info = {
+                    username : Object.values(Object.values(allExp)[2][i])[2], 
+                    state: Object.values(Object.values(allExp)[2][i])[6], 
+                    date : Object.values(Object.values(allExp)[2][i])[1], 
+                    title : Object.values(Object.values(allExp)[2][i])[4], 
+                    site : Object.values(Object.values(allExp)[2][i])[3], 
+                    exp : Object.values(Object.values(allExp)[2][i])[5]
+                }
 
                 cards.push(<PostDefault data = {info} />);
-            }
 
             }
 

@@ -1,6 +1,8 @@
 import allStates from "./allstates.json";
 import './Map.css';
-import React from "react";
+import React, { useState ,useEffect} from 'react';
+import axios from 'axios';
+import WillitendService from "../services/Willitend.service.js"
 import { geoCentroid } from "d3-geo";
 import {
   ComposableMap,
@@ -25,15 +27,18 @@ const offsets = {
 };
 
 const Map = ({ setToolTipContent, statesData }) => { 
+  const [stateInfo, setStatInfo] = useState([]);
 
-function getStateData (id, name) {
+  useEffect(() => {
+    getAllStateInfo();
+  }, []);
 
-  /*
-  We'd get the data from the props statesData and return using id and name
-  */
-
-  return name; 
-}
+  const getAllStateInfo = () => {
+    WillitendService.getAllStateInfo()
+    .catch(e => {
+      console.log(e);
+    });
+  };
 
 function getStateColor (id, name) {
 
@@ -50,6 +55,7 @@ function getStateColor (id, name) {
 }
 
   return (
+    <div>
     <ComposableMap data-tip ="" projection="geoAlbersUsa">
       <Geographies geography={geoUrl}>
         {({ geographies }) => (
@@ -68,7 +74,7 @@ function getStateColor (id, name) {
                   const name = geo.properties.name; 
                   const id = geo.id; 
                   
-                  const data = getStateData(id, name);                 
+                  const data = "Eric";              
 
                   return (
                   setToolTipContent(`<h3>${data}</h3>
@@ -116,6 +122,7 @@ function getStateColor (id, name) {
         )}
       </Geographies>
     </ComposableMap>
+    </div>
   );
 };
 

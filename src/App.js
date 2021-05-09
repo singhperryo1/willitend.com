@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar.js";
 import React from 'react';
 import Subscription from "./components/Subscription.js"
 import VaccineAnectdotes from "./components/VaccineAnectdotes.js";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import { makeStyles } from '@material-ui/core/styles';
 
