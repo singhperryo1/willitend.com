@@ -12,7 +12,6 @@ import React from 'react';
 import Subscription from "./components/Subscription.js"
 import VaccineAnectdotes from "./components/Vaccineanectdotes.js";
 
-
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -64,17 +63,17 @@ function App() {
           <CreatePost />
         </Route>
 
-         {/* If user try to access a invalid page,
-                    redirect user to Homepage.
-                */}
-                
+         {
+         /* If user try to access a invalid page,
+            redirect user to Homepage.
+          */
+          }
         <Redirect to="/"/>
-
     	</Switch>
       <Subscription />
-    <Box mt={5}>
-    	<Copyright />
-    </Box>
+      <Box mt={5}>
+    	  <Copyright />
+      </Box>
 
     </Router> 
   );

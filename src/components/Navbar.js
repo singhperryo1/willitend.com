@@ -45,7 +45,7 @@ export default function Navbar() {
     </Link> 
 
     <Link to = "/VaccineAnectdotes" className = "link"> 
-      <StyledBreadcrumb label="Vaccine Anectdotes" icon={<ChatBubbleIcon fontSize="small" />} />
+      <StyledBreadcrumb label="Vaccine Anecdotes" icon={<ChatBubbleIcon fontSize="small" />} />
     </Link> 
 
     <Link to = "/FAQ" className = "link">

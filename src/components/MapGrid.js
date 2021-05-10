@@ -30,7 +30,7 @@ const moreThan150Props = {
     border: 1,
     style: { width: '2rem', height: '2rem' },
   };
-  const aroundAWeekProps = {
+  const moreThanAWeekProps = {
     bgcolor: '#81d4fa',
     borderColor: 'text.primary',
     m: 1,
@@ -47,37 +47,37 @@ const moreThan150Props = {
 
   export default function Navbar(){
     return(
-    <Grid container spacing={3}>
-            <Grid item xs={12} sm={6}>
-                <Box borderRadius="borderRadius" {...moreThan150Props}>
-                </Box>
-                <h3>150+ Days to reach Herd Immunity</h3>
+      <Grid spacing ={10} container direction="row" justify="center" alignItems="center">
+            <Grid item>
+              <Box borderRadius="borderRadius" {...moreThan150Props}>
+              </Box>
+              <h3>150+ Days to reach Herd Immunity</h3>
             </Grid>
-            <Grid item xs={12} sm={6}>
-                <Box borderRadius="borderRadius" {...moreThan120Props}>
-                </Box>
-                <h3>120+ Days to reach Herd Immunity</h3>
+            <Grid item>
+              <Box borderRadius="borderRadius" {...moreThan120Props}>
+              </Box>
+              <h3>120+ Days to reach Herd Immunity</h3>
             </Grid>
-            <Grid item xs={12} sm={6}>
-                <Box borderRadius="borderRadius" {...moreThan100Props}>
-                </Box>
-                <h3>100+ Days to reach Herd Immunity</h3>
+            <Grid item>
+              <Box borderRadius="borderRadius" {...moreThan100Props}>
+              </Box>
+              <h3>100+ Days to reach Herd Immunity</h3>
             </Grid>
-            <Grid item xs={12} sm={6}>
-            <Box borderRadius="borderRadius" {...moreThan80Props}>
-                </Box>
-                <h3>80+ Days to reach Herd Immunity</h3>
+            <Grid item>
+              <Box borderRadius="borderRadius" {...moreThan80Props}>
+              </Box>
+              <h3>80+ Days to reach Herd Immunity</h3>
             </Grid>
-            <Grid item xs={12} sm={6}>
-                <Box borderRadius="borderRadius" {...aroundAWeekProps}>
-                </Box>
-                <h3>A week to reach Herd Immunity</h3>
+            <Grid item>
+              <Box borderRadius="borderRadius" {...moreThanAWeekProps}>
+              </Box>
+              <h3>8+ Days to reach Herd Immunity</h3>
             </Grid>
-            <Grid item xs={12} sm={6}>
-                <Box borderRadius="borderRadius" {...herdImmunityProps}>
-                </Box>
-                <h3>Reached Herd Immunity</h3>
-                </Grid>
+            <Grid item>
+              <Box borderRadius="borderRadius" {...herdImmunityProps}>
+              </Box>
+              <h3>Already reached Herd Immunity</h3>
+            </Grid>
         </Grid>
       );
   }

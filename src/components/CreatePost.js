@@ -4,6 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import FormAlert from "./FormAlert.js";
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
+import WillitendService from "../services/Willitend.service.js";
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -30,9 +31,9 @@ const useStyles = makeStyles((theme) => ({
 export default function CreatePost () {
   const classes = useStyles();
 
-  const [title, setTitle] = useState("");
-  const [site, setSite] = useState(""); 
-  const [exp, setExp] = useState("");
+  const [pTitle, setTitle] = useState("");
+  const [pSite, setSite] = useState(""); 
+  const [pExp, setExp] = useState("");
   const [status, setStatusBase] = useState("");
 
   const handleTitleChange = (event) => {
@@ -55,12 +56,35 @@ export default function CreatePost () {
     make the votes as zero
     */
 
-    if (!title || !site || !exp) {
+    if (!pTitle || !pSite || !pExp) {
       alert("One or more field is empty"); 
     } else {
 
-    console.log("This is site: " + site + " , title: " + title + " ,and exp: " + exp);
-    console.log("This is ist: " + status);
+    console.log("This is site: " + pSite + " , title: " + pTitle + " ,and exp: " + pExp);
+    console.log("This is ist: " + status)
+
+    var data = {
+      email: "example",
+      username: "example",
+      site: pSite,
+      title: pTitle,
+      vaccExp: pExp,
+      state: "ex",
+    };
+
+    
+    WillitendService.createExp(data)
+      .then(response => {
+        setTitle(response.data.title);
+        setSite(response.data.site);
+        setExp(response.data.exp);
+        console.log(response.data);
+      })
+    .catch(e => {
+      console.log(e);
+    });
+
+    console.log(data)
 
     setTitle(""); 
     setSite(""); 
@@ -99,7 +123,7 @@ export default function CreatePost () {
                 label="Title"
                 name="title"
                 placeholder = "A gleam of light"
-                value = {title}
+                value = {pTitle}
                 onChange = {handleTitleChange}
             />
           <TextField
@@ -111,7 +135,7 @@ export default function CreatePost () {
             label="Vaccination Site"
             id="site"
             placeholder = "Los Gatos Medical Office Center"
-            value = {site}
+            value = {pSite}
             onChange = {handleSiteChange}
           />
 
@@ -125,7 +149,7 @@ export default function CreatePost () {
             multiline
             rows={10}
             placeholder = "Done with my 2nd shot of vaccination today. Very smooth, no problems. Feels like someone lightly punched me in the arm but so far so good. I hope its this smooth for everyone.#CovidVaccine #Covishield #AstraZeneca"
-            value = {exp}
+            value = {pExp}
             onChange = {handleExpChange}
           />
 

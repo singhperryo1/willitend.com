@@ -1,7 +1,6 @@
 import allStates from "./allstates.json";
 import './Map.css';
-import React, { useState ,useEffect} from 'react';
-import WillitendService from '../services/Willitend.service.js';
+import React from 'react';
 import { geoCentroid } from "d3-geo";
 import MapGrid from './MapGrid.js';
 import {
@@ -11,51 +10,6 @@ import {
   Marker,
   Annotation
 } from "react-simple-maps";
-
-const moreThan150Props = {
-  bgcolor: '#f44336',
-  borderColor: 'text.primary',
-  m: 1,
-  border: 1,
-  style: { width: '2rem', height: '2rem' },
-};
-
-const moreThan120Props = {
-  bgcolor: '#fa5788',
-  borderColor: 'text.primary',
-  m: 1,
-  border: 1,
-  style: { width: '2rem', height: '2rem' },
-};
-
-const moreThan100Props = {
-  bgcolor: '#ff8a50',
-  borderColor: 'text.primary',
-  m: 1,
-  border: 1,
-  style: { width: '2rem', height: '2rem' },
-};
-const moreThan80Props = {
-  bgcolor: '#ffca28',
-  borderColor: 'text.primary',
-  m: 1,
-  border: 1,
-  style: { width: '2rem', height: '2rem' },
-};
-const aroundAWeekProps = {
-  bgcolor: '#81d4fa',
-  borderColor: 'text.primary',
-  m: 1,
-  border: 1,
-  style: { width: '2rem', height: '2rem' },
-};
-const herdImmunityProps = {
-  bgcolor: '#e0e0e0',
-  borderColor: 'text.primary',
-  m: 1,
-  border: 1,
-  style: { width: '2rem', height: '2rem' },
-};
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
@@ -134,31 +88,10 @@ const map = {
   "Wyoming" : "WY"
 }
 
-
-var is_load_failed = false;
-var is_load = false;
-
-const Map = ({ setToolTipContent}) => { 
-  const [stateInfo, setStatInfo] = useState([]);
-  // Only get information from database at the first time.
-  useEffect(() => {
-    WillitendService.getAllStateInfo()
-    .then(return_data =>{
-    setStatInfo(return_data.data)
-    })
-    .catch(err=>{
-      alert(err);
-      is_load_failed = true;
-      console.log("Unable to Loaded");
-      }
-    );
-    console.log("Map ==> state info has been loaded");
-    is_load = true;
-  }, []);
-  
+const Map = ({setToolTipContent,stateInfo,returnState}) => { 
   const getStateInfo = (temp_name) => {
     
-    if(!is_load_failed && is_load &&  stateInfo.length === 59 ){
+    if(stateInfo.length >0 ){
       for(var i =0;i<stateInfo.length;i++){
         if(stateInfo[i].name === temp_name) return stateInfo[i];
       }
@@ -177,7 +110,7 @@ const Map = ({ setToolTipContent}) => {
 // Assign Color to difference states 
 // based on how many day to herd immunity
 function getStateColor (temp_name) {
-  if(is_load_failed) return "#9c4dcc";
+  if(stateInfo === 0) return "#9c4dcc";
   else{
     for(var i =0;i<stateInfo.length;i++){
       if(temp_name === stateInfo[i].name){
@@ -206,7 +139,6 @@ function getStateColor (temp_name) {
                 data-tip data-for={geo.id}
                 onMouseEnter = { () => {
                   const name = geo.properties.name; 
-                  const id = geo.id;
                   const state_vacc_data = getStateInfo(map[name]);
                   return (
                   setToolTipContent(`<h1>State of ${name} </h1>
@@ -216,8 +148,11 @@ function getStateColor (temp_name) {
                    <h3 >${state_vacc_data.vacPerDay} residents will be vaccinated per day.</h3> 
                    `));
                 }}
-                onMouseLeave = { () =>{
+                onMouseLeave = {() =>{
                   setToolTipContent("");
+                }}
+                onClick ={()=>{
+                  returnState(map[geo.properties.name]);
                 }}
                 style={{
                     hover: {
