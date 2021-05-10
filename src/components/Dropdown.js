@@ -1,11 +1,10 @@
-import allStates from "./allstates.json";
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import React from 'react';
 import Select from '@material-ui/core/Select';
-
 import { makeStyles } from '@material-ui/core/styles';
+
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -20,9 +19,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dropdown (props) {
   const classes = useStyles();
-  var state = props.place;
   const [open, setOpen] = React.useState(false);
-
+  let state = props.place;
+  let stateInfo = props.stateInfo;
   const handleChange = (event) => {
     props.onPlaceChange(event.target.value);
   };
@@ -51,9 +50,9 @@ export default function Dropdown (props) {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          {allStates.map(option => (
-            <MenuItem key={option.val} value={option.id}>
-              {option.id}
+          {stateInfo && stateInfo.map(element => (
+            <MenuItem key={element.name} value={element.name}>
+              {element.name}
             </MenuItem>
           ))}
         </Select>

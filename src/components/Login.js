@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormAlert from "./FormAlert.js";
 import Grid from '@material-ui/core/Grid';
+import { useHistory } from "react-router-dom";
 import Link from '@material-ui/core/Link';
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
@@ -39,6 +40,7 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState(""); 
   const [status, setStatusBase] = useState("");
+  let history = useHistory();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -56,10 +58,23 @@ export default function Login() {
     } else {
     console.log("This is username: " + username + " this is pass: " + password);
 
+     /*
+    Make a get call to db, and validate password and then redirect to validate user
+    */
+
     setUsername(""); 
     setPassword(""); 
 
-    setStatusBase({ msg: "You are logged in", key: Math.random() });
+    setStatusBase({ msg: "You Are Logged In", key: Math.random() });
+
+    if (password === "abc") {
+
+      console.log("aqui");
+
+      setTimeout(() => history.push("/CreatePost"), 3000);
+
+    }
+
   }
 
   }
@@ -108,8 +123,8 @@ export default function Login() {
           >
             Log In
           </Button>
-          <Grid container>
-            <Grid item xs>
+          <Grid container={true}>
+            <Grid items xs>
               <Link href="" variant="body2">
                 Forgot password?
               </Link>
@@ -138,6 +153,5 @@ export default function Login() {
       </div>
 
     </Container>
-
   );
 }
