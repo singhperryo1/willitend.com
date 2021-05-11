@@ -108,6 +108,7 @@ function createData(temp_state) {
 }
   rows = createData(state);
   return (
+    <div>
     <TableContainer component = {Paper}>
       <Table className={classes.table} aria-label="COVID-19 Vaccine Results Table">
         <TableHead>
@@ -130,5 +131,6 @@ function createData(temp_state) {
         </TableBody>
       </Table>
     </TableContainer>
+    </div>
   );
 }

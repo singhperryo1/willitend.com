@@ -39,8 +39,6 @@ export default function Home() {
     const handlePlaeSelectFromMap = (temp_place) =>{
       setPlace(temp_place);
     };
-
-    console.log(stateInfo);
   return (
     <div className={classes.root} >
      <Grid container = {true} direction = "row" justify = "center" alignItems = "center" spacing = {3}>    

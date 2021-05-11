@@ -3,6 +3,7 @@ import './Map.css';
 import React from 'react';
 import { geoCentroid } from "d3-geo";
 import MapGrid from './MapGrid.js';
+import MapEcharts from './MapEcharts.js';
 import {
   ComposableMap,
   Geographies,
@@ -194,16 +195,8 @@ function getStateColor (temp_name) {
       </Geographies>
     </ComposableMap>
     <MapGrid/>
+    <MapEcharts stateInfo={stateInfo}/>
     </div>
   );
 };
 export default Map;
-
-/*
-if(stateInfo[i].hdays >=150 ) return "#f44336";
-        else if(stateInfo[i].hdays >=120 ) return "#fa5788";
-        else if(stateInfo[i].hdays >=100 ) return "#ff8a50"
-        else if(stateInfo[i].hdays >=80 ) return "#ffca28";
-        else if(stateInfo[i].hdays >=8 ) return "#81d4fa";
-        else return "#e0e0e0";
-*/
