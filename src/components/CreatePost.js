@@ -4,6 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import FormAlert from "./FormAlert.js";
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
+import WillitendService from "../services/Willitend.service.js";
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -61,6 +62,29 @@ export default function CreatePost () {
 
     console.log("This is site: " + site + " , title: " + title + " ,and exp: " + exp);
     console.log("This is ist: " + status);
+
+    var data = {
+      email: "s@s.com",
+      username: "Singh",
+      site: site,
+      title: title,
+      vaccExp: exp,
+      state: "CA",
+    };
+
+
+    WillitendService.createExp(data)
+      .then(response => {
+        setTitle(response.data.title);
+        setSite(response.data.site);
+        setExp(response.data.exp);
+        console.log(response.data);
+      })
+    .catch(e => {
+      console.log(e);
+    });
+
+    console.log(data)
 
     setTitle(""); 
     setSite(""); 

@@ -1,5 +1,7 @@
 import allStates from "./allstates.json";
 import './Map.css';
+import MapEcharts from './MapEcharts.js';
+import MapGrid from "./MapGrid.js";
 import React from "react";
 import { geoCentroid } from "d3-geo";
 import {
@@ -24,32 +26,57 @@ const offsets = {
   DC: [49, 21]
 };
 
-const Map = ({ setToolTipContent, statesData }) => { 
+const Map = ({ setToolTipContent, stateInfo }) => { 
 
-function getStateData (id, name) {
+const getStateInfo = (name) => {
 
-  /*
-  We'd get the data from the props statesData and return using id and name
-  */
+  if (stateInfo.length > 0 ) {
+    for (var i =0 ; i < stateInfo.length; i++) {
+      if (stateInfo[i].name === name) {
+        var stateData = {
+        "firstShot": stateInfo[i].firstShot,
+        "secShot": stateInfo[i].secShot,
+        "vacPerDay": stateInfo[i].vacPerDay,
+        "pop": stateInfo[i].pop,
+        "hdays": stateInfo[i].hdays,
+        "hpop": stateInfo[i].hpop
+       }
 
-  return name; 
-}
-
-function getStateColor (id, name) {
-
-  /* decide the state color using id and name and the avail datas */ 
-  if (name === 'California') {
-    return "#CBC3E3";
-  } else if (name === "Texas") {
-    return "#CBC3E3"
+       return stateData;
+      } 
+      }
+    } else {
+      var err_message = {
+        "hdays" : -99,
+        "firstShot" : -99,
+        "secShot" : -99,
+        "vacPerDay" : -99
+      };
+      return err_message;
+    }
   }
+
+function getStateColor (id) {
+
+  const name = allStates.find(s => s.val === id).id;
+
+  if (stateInfo === 0) return "#9c4dcc";
   else {
-    return "#ECDFDC";
+    for (var i =0; i < stateInfo.length; i++) {
+      if (name === stateInfo[i].name) {
+        if (stateInfo[i].hdays >=150 ) return "#f44336";
+        else if (stateInfo[i].hdays >=120 ) return "#fa5788";
+        else if (stateInfo[i].hdays >=100 ) return "#ff8a50"
+        else if (stateInfo[i].hdays >=80 ) return "#ffca28";
+        else if (stateInfo[i].hdays >=8 ) return "#81d4fa";
+        else return "#e0e0e0";
+      }
+    }
   }
-
 }
 
   return (
+    <div>
     <ComposableMap data-tip ="" projection="geoAlbersUsa">
       <Geographies geography={geoUrl}>
         {({ geographies }) => (
@@ -60,19 +87,22 @@ function getStateColor (id, name) {
                 key={geo.rsmKey}
                 stroke="white"
                 geography={geo}
-
-                fill = {getStateColor(geo.id, geo.properties.name)}
+                fill = {getStateColor(geo.id)}
                 data-tip data-for={geo.id}
                 onMouseEnter = { () => {
 
-                  const name = geo.properties.name; 
-                  const id = geo.id; 
-                  
-                  const data = getStateData(id, name);                 
+                  const name = allStates.find(s => s.val === geo.id).id;
+                  const data = getStateInfo(name);
+
+                  const hDays = data.hdays
+                  const vacPerDay = data.vacPerDay
 
                   return (
-                  setToolTipContent(`<h3>${data}</h3>
-                   <p style ="display: inline;"><h2 style = "display: inline;">${id} DAYS</h2>    to Herd Immunity</p>`));
+                  setToolTipContent(`<h3>${geo.properties.name}</h3>
+                   <p style ="display: inline;">
+                   <h2 style = "display: inline;">${hDays} DAYS</h2>    to Herd Immunity</p>
+                    <h3 style = "display: inline;">${vacPerDay} Vaccinations</h2>    Per Day
+                   </p>`));
                 }}
                 onMouseLeave = { () =>{
                   setToolTipContent("");
@@ -116,6 +146,9 @@ function getStateColor (id, name) {
         )}
       </Geographies>
     </ComposableMap>
+    <MapGrid/>
+    <MapEcharts stateInfo={stateInfo}/>
+  </div>
   );
 };
 

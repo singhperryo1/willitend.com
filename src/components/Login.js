@@ -10,6 +10,7 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import PersonIcon from '@material-ui/icons/Person';
+import WillitendService from "../services/Willitend.service.js";
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -56,26 +57,25 @@ export default function Login() {
     if (!username || !password) {
       alert("One or more field is empty"); 
     } else {
-    console.log("This is username: " + username + " this is pass: " + password);
 
      /*
     Make a get call to db, and validate password and then redirect to validate user
     */
 
+
+    WillitendService.getUserInfo(username)
+      .then(response => {
+        if (response.data.password === password) {
+
     setUsername(""); 
     setPassword(""); 
 
     setStatusBase({ msg: "You Are Logged In", key: Math.random() });
+     setTimeout(() => history.push("/CreatePost"), 3000);
 
-    if (password === "abc") {
-
-      console.log("aqui");
-
-      setTimeout(() => history.push("/CreatePost"), 3000);
-
-    }
-
-  }
+          }
+      }); 
+ }
 
   }
 

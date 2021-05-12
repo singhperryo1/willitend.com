@@ -13,7 +13,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import CryptoService from "../services/Crypto.service.js";
 import WillitendService from "../services/Willitend.service.js";
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -93,11 +92,6 @@ export default function CreateAccount() {
           password: password, 
           username: username, 
         };
-
-    CryptoService.getUserPublicKey(username)
-                  .then((resUser) => {
-                    
-                  }) 
 
     WillitendService.createUser(user)
       .catch(e => {

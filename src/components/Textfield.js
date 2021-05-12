@@ -19,43 +19,33 @@ const useStyles = makeStyles({
 
 export default function Textfield (props) {
   const classes = useStyles();
+  let state = props.place; 
+  let stateInfo = props.stateInfo;
+  let rows = [];
 
-  const state = props.place; 
-  const statesData = props.statesData;
-
-  const rows = [
-  createData(state, '1', 'Days to Herd Immunity', '---'),
-  createData(state, '2', 'Vaccinations Per Day', '---'),
-  createData(state, '3', 'Citizens Currently Vaccinated (Fully)', '---'),
-  createData(state, '4', 'Citizens Currently Vaccinated (Partially)', '---'),
-];
-
-function createData(state, rowId, measurement, result) {
-
-  /* simple edge case for demo w/ hard coded */ 
-  if (state === 'CA') {
-    result = 14; 
-    return {measurement, result};
-  } else if (state === "") {
-
-    result = "NaN"; 
-    return {measurement, result};
+  function createData(temp_state) {
+  if(stateInfo.length === 0 || temp_state === ""){
+    return [
+      ["Days to Herd Immunity","N/A"],
+      ["Citizens Currently Vaccinated (Partially)","N/A"],
+      ["Citizens Currently Vaccinated (Fully)","N/A"],
+      ["Vaccinations Per Day","N/A"]
+    ];
   } else {
-  /* iterate over the statesData and find the data for a particular state and populate using rowId */ 
-  /* for now simply add the hardcoded data using id */ 
-      if (rowId === '1') {
-        result = statesData.herdImmunityDays; 
-      } else if (rowId === '2') {
-        result = statesData.vaccPerDay; 
-      } else if (rowId === '3') {
-        result = statesData.fullVac; 
-      } else {
-        result = statesData.partialVac; 
+    for(let i = 0; i < stateInfo.length; i++) {
+      if(state === stateInfo[i].name){
+        return [
+          ["Days to Herd Immunity: " + stateInfo[i].hdays],
+          ["Citizens Currently Vaccinated (Partially): " + stateInfo[i].firstShot],
+          ["Citizens Currently Vaccinated (Fully): " +stateInfo[i].secShot],
+          ["Vaccinations Per Day: " + stateInfo[i].vacPerDay]
+        ];
       }
-
-  return {measurement, result}; 
+    }
   }
 }
+
+ rows = createData(state);
 
   return (
     <TableContainer component = {Paper}>
@@ -70,11 +60,11 @@ function createData(state, rowId, measurement, result) {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row.measurement}>
+            <TableRow key={row[0]}>
               <TableCell component="th" scope="row">
-                {row.measurement}
+                {row[0]}
               </TableCell>
-              <TableCell align="right">{row.result}</TableCell>
+              <TableCell align="right">{row[1]}</TableCell>
             </TableRow>
           ))}
         </TableBody>
